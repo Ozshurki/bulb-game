@@ -2,7 +2,6 @@
     width: 100vw;
     height: 100vh;
     padding: 0 30px;
-    border: 2px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,12 +19,16 @@
 }
 
 .input-container{
-    border:1px solid red;
     height: 100px;
     display: flex;
     padding: 0 5px;
     flex-direction: column;
     justify-content: space-evenly;
+}
+
+.input-container label{
+    font-weight: 600;
+    font-size: 1.2rem;
 }
 
 .start-game-btn{
@@ -40,5 +43,4 @@
 .start-game-btn:hover{
     color:white;
     background-color: #61dafb;
-
 }
