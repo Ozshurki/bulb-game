@@ -1,0 +1,23 @@
+.side-bar-container{
+    width: 150px;
+    height: 100vh;
+    border-right: 1px solid black;
+    display: flex;
+    flex-direction: column;
+}
+
+.score-history{
+    margin: 20px auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+    width: 90%;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.player-position{
+    color:red;
+    font-weight: 600;
+}

@@ -1,0 +1,15 @@
+.bulbs-container {
+    max-width: 800px;
+    min-height: 300px;
+    border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.row {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid red;
+    flex-wrap: wrap;
+}
