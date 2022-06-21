@@ -7,7 +7,7 @@ const WelcomePage: React.FC = () => {
     return (
         <div className="welcome-page">
             <div className="sign-up-form">
-                <h1 className="welcome-title">Welcome to bulb game!</h1>
+                <h1 className="welcome-title">Welcome to Bulb game</h1>
                 <div className="input-container">
                     <label htmlFor="">Please enter your name:</label>
                     <input type="text" placeholder="Enter your name..."/>

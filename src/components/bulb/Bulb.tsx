@@ -2,9 +2,13 @@ import React from "react";
 
 import "./bulb.css";
 
-const Bulb: React.FC = () => {
+interface BulbInt{
+    bulbIndex:number;
+}
+
+const Bulb: React.FC<BulbInt>= ({bulbIndex}) => {
     return (
-        <div className="bulb"/>
+        <div className="bulb bulbIndex"/>
     );
 };
 
