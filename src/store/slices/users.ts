@@ -54,6 +54,15 @@ const usersSlice = createSlice({
                     state.currentUser.currentScore = 0;
                 }
             });
+        },
+        logout(state){
+            state.allUsers.forEach((user:UserType) =>{
+                if(user.name === state.currentUser.name){
+                    user.bestScore = state.currentUser.bestScore;
+                    user.currentScore = state.currentUser.currentScore;
+                    return;
+                }
+            })
         }
     }
 });

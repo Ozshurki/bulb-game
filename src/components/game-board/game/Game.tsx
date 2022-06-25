@@ -14,6 +14,10 @@ const Game: React.FC = () => {
     const [isNotPass, setIsNotPass] = useState<boolean>(false);
     const [isPlaying, setIsPlaying] = useState(true);
     const [count, setCount] = useState(10);
+    const [hideTimer, setHideTimer] = useState<boolean>(false);
+    const [time, setTime] = useState<number>(2);
+    const [showBulbs, setShowBulbs] = useState<boolean>(false);
+
     const dispatch = useDispatch();
 
     const updateRounds = (isCorrect: boolean) => {
@@ -24,40 +28,45 @@ const Game: React.FC = () => {
             setTimeout(() => {
                 setIsPass(false);
                 setRound(round + 1);
+                setTime(3);
             }, 1500);
-            return;
         } else {
             setIsNotPass(true);
             dispatch(usersActions.initialScore());
             setTimeout(() => {
-                setIsNotPass(false);
                 setRound(1);
+                setIsNotPass(false);
+
             }, 1500);
         }
     };
-
 
     return (
         <div className="game">
             <div className="result">
                 {isPass && <FcApproval size="5rem"/>}
                 {isNotPass && <FcCancel size="5rem"/>}
-                <CountdownCircleTimer
+                {!hideTimer && <CountdownCircleTimer
                     isPlaying={isPlaying}
                     duration={count}
                     size={100}
-                    initialRemainingTime={5}
+                    initialRemainingTime={time}
                     isSmoothColorTransition={false}
                     colors={['#004777', '#F7B801', '#A30000', '#A30000']}
                     colorsTime={[8, 6.66, 3.33, 0]}
-                    onComplete={() => ({shouldRepeat: true})}
-                >
+                    onUpdate={(remainingTime) => {
+                        if (remainingTime === 0) setHideTimer(true);
+                    }}
+                    onComplete={() => ({shouldRepeat: true})}>
                     {({remainingTime}) => remainingTime}
-                </CountdownCircleTimer>
+                </CountdownCircleTimer>}
 
             </div>
             <BulbsContainer rounds={round}
-                            updateRounds={updateRounds}/>
+                            updateRounds={updateRounds}
+                            wait={time}
+                            showBulbs={showBulbs}
+                            toggleShowBulbs={(show:boolean) => setShowBulbs(show)}/>
         </div>
     );
 };

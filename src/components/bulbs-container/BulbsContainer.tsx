@@ -7,25 +7,29 @@ import Bulb from "../bulb/Bulb";
 interface BulbsContainerInt {
     rounds: number;
     updateRounds: (isCorrect: boolean) => void;
+    wait: number;
+    showBulbs: boolean;
+    toggleShowBulbs : (show:boolean) => void;
 }
 
-const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds}) => {
+const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds, wait, showBulbs, toggleShowBulbs}) => {
 
     const [randomizeBulbs, setRandomizeBulbs] = useState<number[]>([]);
     const [currIndex, setCurrIndex] = useState<number>(0);
     const [clickNumber, setClickNumber] = useState<number>(0);
-    const [isBulbLight, setIsBulbLight] = useState<boolean>(true);
+    const [isBulbLight, setIsBulbLight] = useState<boolean>(false);
+
 
 
     // Dad increase the index
     const increaseIndex = () => {
 
         // If any bulb is light so start a timer
-        setIsBulbLight(false);
+        setIsBulbLight(true);
         setCurrIndex(currIndex + 1);
 
         setTimeout(() => {
-            setIsBulbLight(true);
+            setIsBulbLight(false);
         }, 1000);
     };
 
@@ -35,58 +39,60 @@ const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds}) => 
         if (bulbIndex === randomizeBulbs[clickNumber]) {
 
             if (clickNumber + 1 === randomizeBulbs.length) {
-
                 updateRounds(true);
-
                 setCurrIndex(0);
                 setClickNumber(0);
                 setRandomizeBulbs([]);
                 return;
             }
-
             // Check the next bulb
             setClickNumber(clickNumber + 1);
-        } else // User is wrong
+        } else{// User is wrong
             updateRounds(false);
+            setTimeout(() => {
+                setCurrIndex(0);
+                setClickNumber(0);
+                setIsBulbLight(false);
+            }, 1500)
+        }
+
     };
 
-    const updateArray = (arr: number[]) => setRandomizeBulbs(arr);
-
     useEffect(() => {
+        console.log("container render")
+        console.log(isBulbLight);
+        console.log(currIndex);
         const arr: number[] = [];
+        setIsBulbLight(false);
         for (let i = 0; i < rounds; i++) {
             const randomNumber = Math.floor(Math.random() * 6);
             arr.push(randomNumber);
         }
-        updateArray(arr);
+        setRandomizeBulbs(arr);
     }, [rounds]);
 
-    return (
-        <div className="bulbs-container">
 
-            <div className="row">
-                <Bulb needToLight={randomizeBulbs[currIndex] === 0 && isBulbLight}
-                      increaseIndex={increaseIndex}
-                      verifyClick={() => verifyClick(0)}/>
-                <Bulb needToLight={randomizeBulbs[currIndex] === 1 && isBulbLight}
-                      increaseIndex={increaseIndex}
-                      verifyClick={() => verifyClick(1)}/>
-                <Bulb needToLight={randomizeBulbs[currIndex] === 2 && isBulbLight}
-                      increaseIndex={increaseIndex}
-                      verifyClick={() => verifyClick(2)}/>
-            </div>
-            <div className="row">
-                <Bulb needToLight={randomizeBulbs[currIndex] === 3 && isBulbLight}
-                      increaseIndex={increaseIndex}
-                      verifyClick={() => verifyClick(3)}/>
-                <Bulb needToLight={randomizeBulbs[currIndex] === 4 && isBulbLight}
-                      increaseIndex={increaseIndex}
-                      verifyClick={() => verifyClick(4)}/>
-                <Bulb needToLight={randomizeBulbs[currIndex] === 5 && isBulbLight}
-                      increaseIndex={increaseIndex}
-                      verifyClick={() => verifyClick(5)}/>
-            </div>
-        </div>
+    useEffect(() => {
+        setTimeout(() => {
+            toggleShowBulbs(true);
+        }, wait * 1000);
+    }, []);
+
+    return (
+        <>
+            {showBulbs && <div className="bulbs-container">
+                <div className="row">
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 0 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(0)}/>
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 1 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(1)}/>
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 2 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(2)}/>
+                </div>
+                <div className="row">
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 3 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(3)}/>
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 4 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(4)}/>
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 5 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(5)}/>
+                </div>
+            </div>}
+        </>
     );
 };
 
