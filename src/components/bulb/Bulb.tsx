@@ -4,43 +4,41 @@ import "./bulb.css";
 import classNames from "classnames";
 
 interface BulbInt {
-    NeedToLight: boolean;
+    needToLight: boolean;
     increaseIndex: () => void;
-    bulbIndex: number;
-    verifyClick: (index: number) => void;
+    verifyClick: () => void;
 }
 
-const Bulb: React.FC<BulbInt> = ({NeedToLight, increaseIndex, bulbIndex, verifyClick}) => {
+const Bulb: React.FC<BulbInt> = ({needToLight, increaseIndex, verifyClick}) => {
 
-    const [isLight, setIsLight] = useState<string>("dark");
     const [isClick, setIsClick] = useState<boolean>(false);
 
 
+    // Each bulb check if he need to light
     useEffect(() => {
 
-        if (NeedToLight) {
-            console.log("on")
-            setIsLight("light");
+        if (needToLight) {
+
+            // Let dad know that he is light
             setTimeout(() => {
-                setIsLight("dark");
                 increaseIndex();
             }, 1000);
         }
-    }, [NeedToLight]);
+    });
 
     const clickHandler = () => {
 
-        verifyClick(bulbIndex);
+        verifyClick();
         setIsClick(true);
 
-        setTimeout(() =>{
+        setTimeout(() => {
             setIsClick(false);
         }, 1000);
 
     };
 
     return (
-        <div className={classNames("bulb", isLight, isClick && "click")}
+        <div className={classNames("bulb", needToLight ? "light" : "dark", isClick && "click")}
              onClick={clickHandler}/>
     );
 };

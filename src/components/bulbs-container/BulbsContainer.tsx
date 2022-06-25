@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import "./bulbs-container.css";
 import Bulb from "../bulb/Bulb";
 
+
 interface BulbsContainerInt {
     rounds: number;
     updateRounds: (isCorrect: boolean) => void;
@@ -13,8 +14,20 @@ const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds}) => 
     const [randomizeBulbs, setRandomizeBulbs] = useState<number[]>([]);
     const [currIndex, setCurrIndex] = useState<number>(0);
     const [clickNumber, setClickNumber] = useState<number>(0);
+    const [isBulbLight, setIsBulbLight] = useState<boolean>(true);
 
-    const increaseIndex = () => setCurrIndex(currIndex + 1);
+
+    // Dad increase the index
+    const increaseIndex = () => {
+
+        // If any bulb is light so start a timer
+        setIsBulbLight(false);
+        setCurrIndex(currIndex + 1);
+
+        setTimeout(() => {
+            setIsBulbLight(true);
+        }, 1000);
+    };
 
     const verifyClick = (bulbIndex: number) => {
 
@@ -22,7 +35,9 @@ const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds}) => 
         if (bulbIndex === randomizeBulbs[clickNumber]) {
 
             if (clickNumber + 1 === randomizeBulbs.length) {
+
                 updateRounds(true);
+
                 setCurrIndex(0);
                 setClickNumber(0);
                 setRandomizeBulbs([]);
@@ -35,11 +50,7 @@ const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds}) => 
             updateRounds(false);
     };
 
-    const updateArray = (arr: number[]) => {
-        //console.log([...arr]);
-        //setRandomizeBulbs(arr);
-        setRandomizeBulbs([1, 0, 2]);
-    };
+    const updateArray = (arr: number[]) => setRandomizeBulbs(arr);
 
     useEffect(() => {
         const arr: number[] = [];
@@ -52,33 +63,28 @@ const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds}) => 
 
     return (
         <div className="bulbs-container">
+
             <div className="row">
-                <Bulb NeedToLight={randomizeBulbs[currIndex] === 0}
+                <Bulb needToLight={randomizeBulbs[currIndex] === 0 && isBulbLight}
                       increaseIndex={increaseIndex}
-                      verifyClick={verifyClick}
-                      bulbIndex={0}/>
-                <Bulb NeedToLight={randomizeBulbs[currIndex] === 1}
+                      verifyClick={() => verifyClick(0)}/>
+                <Bulb needToLight={randomizeBulbs[currIndex] === 1 && isBulbLight}
                       increaseIndex={increaseIndex}
-                      verifyClick={verifyClick}
-                      bulbIndex={1}/>
-                <Bulb NeedToLight={randomizeBulbs[currIndex] === 2}
+                      verifyClick={() => verifyClick(1)}/>
+                <Bulb needToLight={randomizeBulbs[currIndex] === 2 && isBulbLight}
                       increaseIndex={increaseIndex}
-                      verifyClick={verifyClick}
-                      bulbIndex={2}/>
+                      verifyClick={() => verifyClick(2)}/>
             </div>
             <div className="row">
-                <Bulb NeedToLight={randomizeBulbs[currIndex] === 3}
+                <Bulb needToLight={randomizeBulbs[currIndex] === 3 && isBulbLight}
                       increaseIndex={increaseIndex}
-                      verifyClick={verifyClick}
-                      bulbIndex={3}/>
-                <Bulb NeedToLight={randomizeBulbs[currIndex] === 4}
+                      verifyClick={() => verifyClick(3)}/>
+                <Bulb needToLight={randomizeBulbs[currIndex] === 4 && isBulbLight}
                       increaseIndex={increaseIndex}
-                      verifyClick={verifyClick}
-                      bulbIndex={4}/>
-                <Bulb NeedToLight={randomizeBulbs[currIndex] === 5}
+                      verifyClick={() => verifyClick(4)}/>
+                <Bulb needToLight={randomizeBulbs[currIndex] === 5 && isBulbLight}
                       increaseIndex={increaseIndex}
-                      verifyClick={verifyClick}
-                      bulbIndex={5}/>
+                      verifyClick={() => verifyClick(5)}/>
             </div>
         </div>
     );
