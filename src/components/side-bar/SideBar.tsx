@@ -30,10 +30,16 @@ const SideBar: React.FC = () => {
     const users:UserType[] = useSelector((state: any) => state.users.allUsers);
     const dispatch = useDispatch();
 
+
+    const logoutHandler = () =>{
+        dispatch(usersActions.logout());
+        dispatch(usersActions.sort());
+    }
+
     return (
         <div className="side-bar">
             <div className="logout-btn">
-                <Link to="/" onClick={() => dispatch(usersActions.logout())}>Logout</Link>
+                <Link to="/" onClick={logoutHandler}>Logout</Link>
             </div>
             <div className="top-users">
                 {
@@ -43,7 +49,6 @@ const SideBar: React.FC = () => {
                                 <div className="player-position">{index + 1}</div>
                                 <div>Name: {user.name}</div>
                                 <div>Score: {user.bestScore}</div>
-                                <div>Date: 21/6/2022</div>
                             </div>
                         );
                     })
