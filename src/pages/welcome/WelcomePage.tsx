@@ -13,16 +13,23 @@ const WelcomePage: React.FC = () => {
     return (
         <div className="welcome-page">
             <div className="sign-up-form">
-                <h1 className="welcome-title">Welcome to Bulb game</h1>
-                <div className="input-container">
-                    <label htmlFor="">Please enter your name:</label>
-                    <input type="text" placeholder="Enter your name..."
+                <h2 className="welcome-title">Welcome to Bulb game</h2>
+                <div className="form">
+                    <input type="text"
+                           name="text"
+                           autoComplete="off"
+                           required
                            value={userName}
-                           onChange={(event:React.FormEvent<HTMLInputElement>) => setUserName(event.currentTarget.value)}/>
+                           onChange={(event: React.FormEvent<HTMLInputElement>) => setUserName(event.currentTarget.value)}/>
+                    <label htmlFor="text" className="label-name">
+                        <span className="content-name">
+                            Enter Your Name
+                        </span>
+                    </label>
                 </div>
                 <Link className="start-game-btn"
                       to="/game"
-                      onClick={() => dispatch(usersActions.addUser({name:userName}))}>Start game</Link>
+                      onClick={() => dispatch(usersActions.addUser({name: userName}))}>Start game</Link>
             </div>
         </div>
     );

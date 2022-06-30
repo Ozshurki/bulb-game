@@ -6,9 +6,20 @@
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-Most of the code is done but i didnt have enough time to fix the bugs that happened during development.
+Memory game - Bulb game
 
-Main bugs:
 
-        The redux slice is done but still cant see the current user in the at the top of the game.
-        Didnt had enough time to finish my algorithem for the bulbs but theoretically it works.
+Rules-
+    
+        Each round you need to press the correct sequence of the lights.
+
+        Every correct sequence you get 10 points.
+
+
+My details:
+
+            Oz Shurki
+
+            shurki.oz@gmail.com
+
+            0545416161

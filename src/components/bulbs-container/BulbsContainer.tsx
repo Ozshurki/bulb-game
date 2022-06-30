@@ -82,8 +82,12 @@ const BulbsContainer: React.FC<BulbsContainerInt> = ({rounds, updateRounds, wait
         <>
             {showBulbs && <div className="bulbs-container">
                 <div className="row">
-                    <Bulb needToLight={randomizeBulbs[currIndex] === 0 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(0)}/>
-                    <Bulb needToLight={randomizeBulbs[currIndex] === 1 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(1)}/>
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 0 && !isBulbLight}
+                          increaseIndex={increaseIndex}
+                          verifyClick={() => verifyClick(0)}/>
+                    <Bulb needToLight={randomizeBulbs[currIndex] === 1 && !isBulbLight}
+                          increaseIndex={increaseIndex}
+                          verifyClick={() => verifyClick(1)}/>
                     <Bulb needToLight={randomizeBulbs[currIndex] === 2 && !isBulbLight} increaseIndex={increaseIndex} verifyClick={() => verifyClick(2)}/>
                 </div>
                 <div className="row">

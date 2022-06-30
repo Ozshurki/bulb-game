@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200&display=swap');
+
 .welcome-page {
     width: 100vw;
     height: 100vh;
@@ -5,34 +7,96 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #31b65e;
+    background: linear-gradient(#31b65e, #42c9b2);
 }
 
 .sign-up-form {
     width: 600px;
     min-height: 400px;
-    border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
+    box-shadow: rgb(38, 57, 77) 0 20px 30px -10px;
+    font-size: calc(5px + 2vmin);
+    transition: 0.3s ease;
+    border: 1px solid #ccc;
+    font-family: 'Mukta', sans-serif;
 }
 
-.input-container{
-    height: 100px;
-    display: flex;
-    padding: 0 5px;
-    flex-direction: column;
-    justify-content: space-evenly;
+.form {
+    width: 30%;
+    position: relative;
+    height: 80px;
+    overflow: hidden;
 }
 
-.input-container label{
-    font-weight: 600;
-    font-size: 1.2rem;
+.form input {
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    border: none;
+    background-color: #fff;
 }
 
-.start-game-btn{
-    border: 1px solid green;
+.form label {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-bottom: 1px solid white;
+}
+
+.form label::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-bottom: 3px solid #42c9b2;
+    transition: all 0.3s ease;
+}
+
+.content-name {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    padding-bottom: 5px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.form input:focus {
+    outline: none;
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+    transform: translateY(-150%);
+    font-size: 16px;
+    left: 0px;
+    color: #31b65e;
+}
+
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+    transform: translateX(0%);
+}
+
+
+.form input[type=text]{
+    font-size: 1.1rem;
+    font-family: 'Mukta', sans-serif;
+}
+
+.start-game-btn {
+    border: 2px solid black;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -40,7 +104,7 @@
     color: black;
 }
 
-.start-game-btn:hover{
-    color:white;
-    background-color: #61dafb;
+.start-game-btn:hover {
+    transform: scale(1.1);
+    transition: all 0.2s ease-in;
 }

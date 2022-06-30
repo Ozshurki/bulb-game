@@ -1,7 +1,8 @@
-import React, {useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import "./bulb.css";
 import classNames from "classnames";
+import {motion} from "framer-motion";
 
 interface BulbInt {
     needToLight: boolean;
@@ -38,8 +39,11 @@ const Bulb: React.FC<BulbInt> = ({needToLight, increaseIndex, verifyClick}) => {
     };
 
     return (
-        <div className={classNames("bulb", needToLight ? "light" : "dark", isClick && "click")}
-             onClick={clickHandler}/>
+        <motion.div
+            className={classNames("bulb", needToLight ? "light" : "dark", isClick && "click")}
+            onClick={clickHandler}
+            animate={{needToLight} && {rotateX: 180}}
+            transition={{needToLight} && {duration: "1"}}/>
     );
 };
 
