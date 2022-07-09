@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {FcApproval, FcCancel} from "react-icons/fc";
 import {CountdownCircleTimer} from 'react-countdown-circle-timer';
 import {useDispatch} from "react-redux";
 
-import BulbsContainer from "../../bulbs-container/BulbsContainer";
+import CardsContainer from "../../cards-container/CardsContainer";
 import {usersActions} from "../../../store/slices/users";
 import "./game.css";
 
@@ -12,13 +12,17 @@ const Game: React.FC = () => {
     const [round, setRound] = useState<number>(1);
     const [isPass, setIsPass] = useState<boolean>(false);
     const [isNotPass, setIsNotPass] = useState<boolean>(false);
-    const [isPlaying, setIsPlaying] = useState(true);
-    const [count, setCount] = useState(10);
-    const [hideTimer, setHideTimer] = useState<boolean>(false);
+    const [showRules, setShowRules] = useState(true);
     const [time, setTime] = useState<number>(2);
-    const [showBulbs, setShowBulbs] = useState<boolean>(false);
+    const [showCards, setShowCards] = useState<boolean>(false);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setTimeout(() => {
+            setShowRules(false);
+        }, 4000)
+    },[])
 
     const updateRounds = (isCorrect: boolean) => {
 
@@ -43,30 +47,17 @@ const Game: React.FC = () => {
 
     return (
         <div className="game">
+            {showRules ? <h2 className="rules">Click the correct sequence after each round</h2> :
+            <h2 className="round">Round: {round}</h2>}
             <div className="result">
                 {isPass && <FcApproval size="5rem"/>}
                 {isNotPass && <FcCancel size="5rem"/>}
-                {!hideTimer && <CountdownCircleTimer
-                    isPlaying={isPlaying}
-                    duration={count}
-                    size={100}
-                    initialRemainingTime={time}
-                    isSmoothColorTransition={false}
-                    colors={['#004777', '#F7B801', '#A30000', '#A30000']}
-                    colorsTime={[8, 6.66, 3.33, 0]}
-                    onUpdate={(remainingTime) => {
-                        if (remainingTime === 0) setHideTimer(true);
-                    }}
-                    onComplete={() => ({shouldRepeat: true})}>
-                    {({remainingTime}) => remainingTime}
-                </CountdownCircleTimer>}
-
             </div>
-            <BulbsContainer rounds={round}
+            <CardsContainer rounds={round}
                             updateRounds={updateRounds}
                             wait={time}
-                            showBulbs={showBulbs}
-                            toggleShowBulbs={(show:boolean) => setShowBulbs(show)}/>
+                            showCards={showCards}
+                            toggleShowCards={(show:boolean) => setShowCards(show)}/>
         </div>
     );
 };

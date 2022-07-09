@@ -7,15 +7,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #31b65e;
-    background: linear-gradient(#31b65e, #42c9b2);
+    background: linear-gradient(#FFFFFF, #FFEFBA);
 }
 
 .sign-up-form {
     width: 600px;
     min-height: 400px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: rgb(247 247 249);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -23,8 +22,11 @@
     box-shadow: rgb(38, 57, 77) 0 20px 30px -10px;
     font-size: calc(5px + 2vmin);
     transition: 0.3s ease;
-    border: 1px solid #ccc;
     font-family: 'Mukta', sans-serif;
+}
+
+.error{
+    color: red;
 }
 
 .form {
@@ -39,7 +41,7 @@
     height: 100%;
     padding-top: 50px;
     border: none;
-    background-color: #fff;
+    background-color: rgb(247 247 249);
 }
 
 .form label {
@@ -69,7 +71,7 @@
     left: 0px;
     padding-bottom: 5px;
     transition: all 0.3s ease;
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .form input:focus {
@@ -79,7 +81,7 @@
 .form input:focus + .label-name .content-name,
 .form input:valid + .label-name .content-name {
     transform: translateY(-150%);
-    font-size: 16px;
+    font-size: 15px;
     left: 0px;
     color: #31b65e;
 }
@@ -89,22 +91,8 @@
     transform: translateX(0%);
 }
 
-
 .form input[type=text]{
     font-size: 1.1rem;
     font-family: 'Mukta', sans-serif;
 }
 
-.start-game-btn {
-    border: 2px solid black;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-
-.start-game-btn:hover {
-    transform: scale(1.1);
-    transition: all 0.2s ease-in;
-}

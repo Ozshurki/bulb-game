@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 
 import SideBar from "../../components/side-bar/SideBar";
 import GameBoard from "../../components/game-board/GameBoard";

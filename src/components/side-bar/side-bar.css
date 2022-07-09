@@ -1,38 +1,30 @@
 .side-bar{
     width: 150px;
     height: 100vh;
-    border-right: 1px solid black;
     display: flex;
     flex-direction: column;
+    justify-content: space-around;
+    border-radius: 5px;
 }
 
 .logout-btn{
-    margin: 15px 0;
+    margin-top: 15px;
 }
 
-.logout-btn a{
-    text-decoration: none;
-    color: black;
-    font-weight: 600;
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-.logout-btn a:hover{
-    color: white;
-    background-color: black;
-    transition: all 0.3s ease-in-out;
+.top-5{
+    width: 80%;
+    margin: 30px auto;
+    border-bottom: 1px solid rgb(197 213 203);
 }
 
 .top-users{
-    overflow-y: scroll;
+    height: 85%;
 }
 
 .score-history{
-    margin: 20px auto;
+    margin: 10px auto;
     padding-bottom: 5px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(197 213 203);
     width: 90%;
     min-height: 100px;
     display: flex;
@@ -40,7 +32,12 @@
     justify-content: space-between;
 }
 
+.score-history div{
+    font-family: 'Gentium Book Plus', serif;
+}
+
 .player-position{
-    color:red;
     font-weight: 600;
+    font-size: 1.2rem;
+    color: #a749ff;
 }

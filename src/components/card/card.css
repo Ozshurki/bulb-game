@@ -1,0 +1,67 @@
+.card{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    cursor: pointer;
+    margin: 5px;
+    transition: all ease 0.2s;
+    box-shadow: 0 5px 10px 0 #a29f5a;
+    border-radius: 10px;
+}
+
+.card:after{
+    position: absolute;
+    content:"";
+    top:0;
+    right:0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px 2px #A1FFCE;
+}
+
+
+.light:after{
+    background-image: url("https://i.pinimg.com/originals/8e/44/58/8e44585c7a426a611cb7988d6ab472c1.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+
+.dark:after{
+    background-color: white;
+    background-image: url("https://www.nawpic.com/media/2020/palm-tree-nawpic-9.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+}
+
+.click{
+    background-color:#707070;
+}
+
+
+@media (max-width: 735px){
+    .card{
+        width: 80px;
+        height: 80px;
+        transition: width 0.5s ease-in-out;
+    }
+}
+
+@media (max-width: 330px){
+    .card{
+        width: 60px;
+        height: 60px;
+        transition: width 0.5s ease-in-out;
+    }
+}

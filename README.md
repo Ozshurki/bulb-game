@@ -6,7 +6,7 @@
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 
-Memory game - Bulb game
+Memory game - Card game
 
 
 Rules-

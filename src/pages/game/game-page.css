@@ -1,6 +1,11 @@
 .game-page{
     width: 100vw;
     height: 100vh;
-    overflow-y: hidden;
+    padding: 0 1px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
+    background: #31b65e;
+    background: linear-gradient(#FFFFFF, #FFEFBA);
 }

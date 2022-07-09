@@ -1,0 +1,11 @@
+.cards-container {
+    max-width: 900px;
+    min-height: 400px;
+    margin: 0 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
